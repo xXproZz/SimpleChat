@@ -1,4 +1,5 @@
 import * as React from "react";
+import './Chat.module.css'
 import {
   Box,
   TextField,
@@ -8,7 +9,7 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
+
 
 const messages = [
   { id: 1, text: "Hi, welcome to SimpleChat! Go ahead and send me a message.", sender: "bot" },
@@ -29,13 +30,26 @@ const ChatUI = () => {
     setInput(event.target.value);
   };
 
+  const commonStyles = {
+    bgcolor: 'background.paper',
+    m: 1,
+    borderColor: 'text.primary',
+    width: '5rem',
+    height: '5rem',
+  };
+
+  
+  
+
   return (
+
+    
     <Box
       sx={{
-        height: "100vh",
+        height: "50vh",
         display: "flex",
         flexDirection: "column",
-        bgcolor: "grey.200",
+        bgcolor: "white",
       }}
     >
       <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
@@ -43,10 +57,15 @@ const ChatUI = () => {
           <Message key={message.id} message={message} />
         ))}
       </Box>
-      <Box sx={{ p: 2, backgroundColor: "background.default" }}>
+      <Box sx={{ 
+        p: 2, 
+        backgroundColor: "grey.200",
+        borderTopColor:'black',
+        borderColor: 'text.primary',
+         }}>
         <Grid container spacing={2}>
           <Grid item xs={10}>
-            <TextField
+            <TextField 
               size="small"
               fullWidth
               placeholder="Enter your message..."
@@ -56,10 +75,11 @@ const ChatUI = () => {
             />
           </Grid>
           <Grid item xs={2}>
-            <Button
+            <Button className="Button"
               fullWidth
-              color="success"
+              
               variant="contained"
+              color="success"
               onClick={handleSend}
             >
               Send
@@ -86,7 +106,7 @@ const Message = ({ message }) => {
         sx={{
           display: "flex",
           flexDirection: isBot ? "row" : "row-reverse",
-          alignItems: "center",
+          alignItems: "end",
         }}
       >
         <Avatar sx={{ bgcolor: isBot ? ".main" : ".main" }}>
@@ -106,8 +126,8 @@ const Message = ({ message }) => {
         </ Paper > 
       </ Box > 
     </ Box >
+              
   );
 };
 
 export default  ChatUI
- 
