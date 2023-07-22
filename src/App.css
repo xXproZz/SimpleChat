@@ -5,16 +5,20 @@
 
 .App-Icon {
   display: inline;
-  flex-direction: row;
-  align-items: center;
+  
   color: gray;
-  justify-content: baseline;
+  vertical-align: middle;
+}
+
+.App-IconSettings {
+  color: gray;
+  vertical-align: middle;
   vertical-align: middle;
 }
 
 h3 {
   color: rgb(100, 100, 100);
-  text-align: left;
+  text-align: center;
   border: 'text-primary';
   width: '5rem';
   height: '5rem';
