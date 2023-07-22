@@ -1,5 +1,7 @@
 import * as React from "react";
 import './Chat.module.css'
+import { lightGreen } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
 import {
   Box,
   TextField,
@@ -30,16 +32,13 @@ const ChatUI = () => {
     setInput(event.target.value);
   };
 
-  const commonStyles = {
-    bgcolor: 'background.paper',
-    m: 1,
-    borderColor: 'text.primary',
-    width: '5rem',
-    height: '5rem',
-  };
-
-  
-  
+  const ColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(lightGreen[500]),
+    backgroundColor: lightGreen[500],
+    '&:hover': {
+      backgroundColor: lightGreen[700],
+    },
+  }));
 
   return (
 
@@ -75,15 +74,14 @@ const ChatUI = () => {
             />
           </Grid>
           <Grid item xs={2}>
-            <Button className="Button"
-              fullWidth
-              
-              variant="contained"
-              color="success"
-              onClick={handleSend}
-            >
+          <ColorButton variant="contained"
+          size="medium"
+          fullWidth
+          onClick={handleSend}
+          >
               Send
-            </Button>
+          </ColorButton> 
+            
           </Grid>
         </Grid>
       </Box>
