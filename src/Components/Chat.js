@@ -15,8 +15,8 @@ import { ThemeProvider } from "@emotion/react";
 
 
 const messages = [
-  { id: 1, text: "Hi, welcome to SimpleChat! Go ahead and send me a message.", sender: "bot", time: "12:45" },
-  { id: 2, text: "You can change your name in JS section!", sender: "Sajad", time: "12:46" },
+  { id: 1, text1: "Hi, welcome to SimpleChat! Go ahead and send me a message.", sender1: "BOT", time1: "12:45" },
+  { id: 2, text2: "You can change your name in JS section!", sender2: "Sajad", time2: "12:46" },
 ];
 
 const ChatUI = () => {
@@ -76,7 +76,7 @@ const ChatUI = () => {
         
          }}>
         <Grid container spacing={1}
-        backgroundColor=''>
+        >
           <Grid item xs={11}
           >
             <TextField 
@@ -107,7 +107,7 @@ const ChatUI = () => {
 };
 
 const Message = ({ message }) => {
-  const isBot = message.sender === "bot";
+  const isBot = message.sender1 === "BOT";
 
   return (
     
@@ -120,7 +120,7 @@ const Message = ({ message }) => {
         mb: 2,
       }}
     >
-      {/* caixa dos avatares redondos */}
+      {/* caixa dos avatares  */}
       <Box
         sx={{
           display: "flex",
@@ -132,7 +132,9 @@ const Message = ({ message }) => {
         <Avatar sx={{ bgcolor: "lightgray" }}>
           {isBot ? "" : ""}
         </Avatar>
-
+        
+        
+        {/* CAIXA DE TEXTO DOS DIÁLOGOS */}
         <Paper
           variant="elevation"
           sx={{
@@ -144,25 +146,39 @@ const Message = ({ message }) => {
            
           }}
         > 
-        
           <Box sx={{
             display: "flex",
             justifyContent:"space-between",
-            alignSelf:"end",
             
           }}>
-          < Typography > {message.sender} </ Typography > 
+          < Typography sx={{
+            color:'black',
+            fontWeight: 'bold',
+          }}> {message.sender1} </ Typography >
+          < Typography sx={{
+            color:'white',
+            fontWeight: 'bold',
+          }}> {message.sender2} </ Typography > 
           
            <Grid 
             container
-            direction="row"
-            alignContent='end'
+            direction="column-reverse"
+            
             height= {60}
              >
-          < Typography > {message.text} </ Typography >
+          < Typography sx={{
+            color:'black',
+          }}> {message.text1} </ Typography >
+          < Typography sx={{
+            color:'white',
+          }}> {message.text2} </ Typography >
             </Grid>
-          < Typography > {message.time} </ Typography > 
-            
+          < Typography sx={{
+            color:'black',
+          }}> {message.time1} </ Typography > 
+          < Typography sx={{
+            color:'white',
+          }}> {message.time2} </ Typography >  
           </Box>  
         </ Paper > 
       </ Box > 
