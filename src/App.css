@@ -4,16 +4,14 @@
 }
 
 .App-Icon {
-  display: inline;
-  
+  display: flex;
   color: gray;
   vertical-align: middle;
 }
 
 .App-IconSettings {
   color: gray;
-  vertical-align: middle;
-  vertical-align: middle;
+ 
 }
 
 h3 {
