@@ -128,22 +128,23 @@ const Message = ({ message }) => {
           }}
         > 
         
-          <Box sx={{
+         <Box sx={{
             display: "flex",
             justifyContent:"space-between",
+            alignSelf:"flex-end",
             height: 80,
           }}>
+          < Typography > {message.sender} </ Typography > 
           
-          < Typography tipográfica>  {message.sender} </ Typography > 
-          < Typography tipográfica>  {message.time} </ Typography > 
-          <Grid 
+           <Grid 
             container
             direction="row"
-            justifyContent="space-between"
             alignContent='center'
              >
-          < Typography >  {message.text} </ Typography >
+         
+          < Typography > {message.text} </ Typography >
             </Grid>
+          < Typography > {message.time} </ Typography > 
           </Box>  
         </ Paper > 
       </ Box > 
