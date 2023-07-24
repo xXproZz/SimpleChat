@@ -1,7 +1,6 @@
 import * as React from "react";
 import './Chat.module.css'
-import { lightGreen } from '@mui/material/colors';
-import { styled } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import {
   Box,
   TextField,
@@ -11,6 +10,8 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
+import { green } from "@mui/material/colors";
+import { ThemeProvider } from "@emotion/react";
 
 
 const messages = [
@@ -32,13 +33,16 @@ const ChatUI = () => {
     setInput(event.target.value);
   };
 
-  const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(lightGreen[500]),
-    backgroundColor: lightGreen[500],
-    '&:hover': {
-      backgroundColor: lightGreen[700],
-    },
-  }));
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: green[500],
+      },
+      secondary: {
+        main: '#00a152'
+      },
+      }
+      });
 
   return (
 
@@ -49,40 +53,52 @@ const ChatUI = () => {
         display: "flex",
         flexDirection: "column",
         bgcolor: "white",
+        border: 1,
+        borderColor: "lightgrey",
+        boxShadow: 3,
+        borderRadius: '5px',
       }}
     >
-      <Box sx={{ flexGrow: 1, overflow: "auto", p: 2 }}>
+      <Box sx={{ flexGrow: 1,
+         overflow: "auto",
+          p: 1 }}>
         {messages.map((message) => (
-          <Message key={message.id} message={message} />
+        <Message key={message.id} message={message} />
         ))}
       </Box>
       <Box sx={{ 
         p: 2, 
         backgroundColor: "grey.200",
-        borderTopColor:'black',
-        borderColor: 'text.primary',
+        border: 1,
+        borderColor: "lightgrey",
+        boxShadow: 3,
+        borderRadius: '5px'
         
          }}>
-        <Grid container spacing={2}>
-          <Grid item xs={10}>
+        <Grid container spacing={1}
+        backgroundColor=''>
+          <Grid item xs={11}
+          >
             <TextField 
               size="small"
-              fullWidth
+              fullWidth  
               placeholder="Enter your message..."
               variant="outlined"
               value={input}
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={2}>
-          <ColorButton variant="contained"
+          
+          <Grid item xs={1}>
+          <ThemeProvider theme={theme}>
+          <Button variant="contained"
+          color="secondary"
           size="medium"
-          fullWidth
           onClick={handleSend}
           >
               Send
-          </ColorButton> 
-            
+          </Button> 
+          </ThemeProvider>
           </Grid>
         </Grid>
       </Box>
@@ -100,8 +116,8 @@ const Message = ({ message }) => {
       sx={{
         display: "flex",
         justifyContent: isBot ? "flex-start" : "flex-end",
+      
         mb: 2,
-        
       }}
     >
       {/* caixa dos avatares redondos */}
@@ -110,9 +126,10 @@ const Message = ({ message }) => {
           display: "flex",
           flexDirection: isBot ? "row" : "row-reverse",
           alignItems: "end",
+          
         }}
       >
-        <Avatar sx={{ bgcolor: isBot ? ".main" : ".main" }}>
+        <Avatar sx={{ bgcolor: "lightgray" }}>
           {isBot ? "" : ""}
         </Avatar>
 
@@ -122,29 +139,30 @@ const Message = ({ message }) => {
             p: 2,
             ml: isBot ? 1 : 0,
             mr: isBot ? 0 : 1,
-            backgroundColor: isBot ? ".light" : "primary.light",
+            backgroundColor: isBot ? "#eeeeee" : "#5393ff",
             borderRadius: isBot ? "20px 20px 20px 5px" : "20px 20px  5px  20px ",
            
           }}
         > 
         
-         <Box sx={{
+          <Box sx={{
             display: "flex",
             justifyContent:"space-between",
-            alignSelf:"flex-end",
-            height: 80,
+            alignSelf:"end",
+            
           }}>
           < Typography > {message.sender} </ Typography > 
           
            <Grid 
             container
             direction="row"
-            alignContent='center'
+            alignContent='end'
+            height= {60}
              >
-         
           < Typography > {message.text} </ Typography >
             </Grid>
           < Typography > {message.time} </ Typography > 
+            
           </Box>  
         </ Paper > 
       </ Box > 
