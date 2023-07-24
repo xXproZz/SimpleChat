@@ -14,8 +14,8 @@ import {
 
 
 const messages = [
-  { id: 1, text: "Hi, welcome to SimpleChat! Go ahead and send me a message.", sender: "bot" },
-  { id: 2, text: "You can change your name in JS section!", sender: "Sajad" },
+  { id: 1, text: "Hi, welcome to SimpleChat! Go ahead and send me a message.", sender: "bot", time: "12:45" },
+  { id: 2, text: "You can change your name in JS section!", sender: "Sajad", time: "12:46" },
 ];
 
 const ChatUI = () => {
@@ -61,6 +61,7 @@ const ChatUI = () => {
         backgroundColor: "grey.200",
         borderTopColor:'black',
         borderColor: 'text.primary',
+        
          }}>
         <Grid container spacing={2}>
           <Grid item xs={10}>
@@ -93,13 +94,17 @@ const Message = ({ message }) => {
   const isBot = message.sender === "bot";
 
   return (
+    
+    // caixas de mensagens
     <Box
       sx={{
         display: "flex",
         justifyContent: isBot ? "flex-start" : "flex-end",
         mb: 2,
+        
       }}
     >
+      {/* caixa dos avatares redondos */}
       <Box
         sx={{
           display: "flex",
@@ -110,17 +115,36 @@ const Message = ({ message }) => {
         <Avatar sx={{ bgcolor: isBot ? ".main" : ".main" }}>
           {isBot ? "" : ""}
         </Avatar>
+
         <Paper
-          variant="outlined"
+          variant="elevation"
           sx={{
             p: 2,
             ml: isBot ? 1 : 0,
             mr: isBot ? 0 : 1,
             backgroundColor: isBot ? ".light" : "primary.light",
             borderRadius: isBot ? "20px 20px 20px 5px" : "20px 20px  5px  20px ",
+           
           }}
         > 
-          < Typography tipográfica  = "body1" > {message.text} </ Typography > 
+        
+          <Box sx={{
+            display: "flex",
+            justifyContent:"space-between",
+            height: 80,
+          }}>
+          
+          < Typography tipográfica>  {message.sender} </ Typography > 
+          < Typography tipográfica>  {message.time} </ Typography > 
+          <Grid 
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignContent='center'
+             >
+          < Typography >  {message.text} </ Typography >
+            </Grid>
+          </Box>  
         </ Paper > 
       </ Box > 
     </ Box >
