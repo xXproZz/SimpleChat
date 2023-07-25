@@ -1,6 +1,7 @@
 import * as React from "react";
 import './Chat.module.css'
 import { createTheme } from '@mui/material/styles';
+import image from '../img/ImageChat.jpg';
 import {
   Box,
   TextField,
@@ -45,21 +46,23 @@ const ChatUI = () => {
       });
 
   return (
-
-    
     <Box
       sx={{
-        height: "50vh",
+        height: "80vh",
         display: "flex",
         flexDirection: "column",
-        bgcolor: "white",
+        backgroundImage: `url(${image})`,
+        backgroundPosition: 'center center',
+        width: 'auto',
         border: 1,
         borderColor: "lightgrey",
         boxShadow: 3,
         borderRadius: '5px',
       }}
     >
-      <Box sx={{ flexGrow: 1,
+      
+      <Box sx={{ 
+        flexGrow: 1,
          overflow: "auto",
           p: 1 }}>
         {messages.map((message) => (
@@ -73,12 +76,9 @@ const ChatUI = () => {
         borderColor: "lightgrey",
         boxShadow: 3,
         borderRadius: '5px'
-        
          }}>
-        <Grid container spacing={1}
-        >
-          <Grid item xs={11}
-          >
+        <Grid container spacing={1}>
+          <Grid item xs={11}>
             <TextField 
               size="small"
               fullWidth  
@@ -116,7 +116,7 @@ const Message = ({ message }) => {
       sx={{
         display: "flex",
         justifyContent: isBot ? "flex-start" : "flex-end",
-      
+        
         mb: 2,
       }}
     >
@@ -143,14 +143,14 @@ const Message = ({ message }) => {
             mr: isBot ? 0 : 1,
             backgroundColor: isBot ? "#eeeeee" : "#5393ff",
             borderRadius: isBot ? "20px 20px 20px 5px" : "20px 20px  5px  20px ",
-           
+            
           }}
         > 
           <Box sx={{
             display: "flex",
             justifyContent:"space-between",
-            
           }}>
+
           < Typography sx={{
             color:'black',
             fontWeight: 'bold',
@@ -159,11 +159,10 @@ const Message = ({ message }) => {
             color:'white',
             fontWeight: 'bold',
           }}> {message.sender2} </ Typography > 
-          
+
            <Grid 
             container
             direction="column-reverse"
-            
             height= {60}
              >
           < Typography sx={{
@@ -173,6 +172,7 @@ const Message = ({ message }) => {
             color:'white',
           }}> {message.text2} </ Typography >
             </Grid>
+
           < Typography sx={{
             color:'black',
           }}> {message.time1} </ Typography > 
